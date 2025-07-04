@@ -7,6 +7,8 @@ import com.jeric.bitteldigitalsignage.network.domain.model.register.login.respon
 import com.jeric.bitteldigitalsignage.network.domain.model.register.post.PostRegistration
 import com.jeric.bitteldigitalsignage.network.domain.model.register.response.PostResponse
 import com.jeric.bitteldigitalsignage.network.domain.model.time.GetTime
+import com.jeric.bitteldigitalsignage.network.domain.model.weather.daily.GetDailyWeather
+import com.jeric.bitteldigitalsignage.network.domain.model.weather.hourly.GetHourlyWeather
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -37,4 +39,13 @@ interface IptvListAPI {
         @Query("room") room: String = STB.ROOM
     ): GetTime
 
+    @GET("index.php/api/get_weather_daily_forecast")
+    suspend fun getWeatherDaily(
+        @Query("room") room: String = STB.ROOM
+    ): GetDailyWeather
+
+    @GET("index.php/api/get_weather_hourly_forecast")
+    suspend fun getWeatherHourly(
+        @Query("room") room: String = STB.ROOM
+    ): GetHourlyWeather
 }

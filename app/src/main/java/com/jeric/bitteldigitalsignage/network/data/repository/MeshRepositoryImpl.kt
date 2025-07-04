@@ -21,6 +21,8 @@ import com.jeric.bitteldigitalsignage.network.domain.model.register.post.PostReg
 import com.jeric.bitteldigitalsignage.network.domain.model.register.post.PostRegistrationData
 import com.jeric.bitteldigitalsignage.network.domain.model.stb.StbRegistration
 import com.jeric.bitteldigitalsignage.network.domain.model.time.GetTimeData
+import com.jeric.bitteldigitalsignage.network.domain.model.weather.daily.GetDailyData
+import com.jeric.bitteldigitalsignage.network.domain.model.weather.hourly.HourlyWeatherData
 import com.jeric.bitteldigitalsignage.network.domain.repository.MeshRepository
 import com.jeric.bitteldigitalsignage.network.util.DataState
 import com.jeric.bitteldigitalsignage.network.util.networkBoundResource
@@ -102,6 +104,24 @@ class MeshRepositoryImpl @Inject constructor(
         emit(dataBase.getAllZones())
     }.flowOn(Dispatchers.IO)
 
+    override fun getDailyWeather() = flow {
+//        val response = api.getWeatherDaily()
+        meshDataBase.withTransaction {
+            dataBase.deleteDailyWeather()
+            dataBase.insertDailyWeather(getMockDailyWeatherList())
+        }
+        emit(dataBase.getDailyWeather())
+    }.flowOn(Dispatchers.IO)
+
+    override fun getHourlyWeather() = flow {
+        val response = api.getWeatherHourly()
+        meshDataBase.withTransaction {
+            dataBase.deleteHourlyWeather()
+            dataBase.insertHourlyWeather(response.data)
+        }
+        emit(dataBase.getHourlyWeather())
+    }.flowOn(Dispatchers.IO)
+
     override fun getZoneMediaModel() = flow {
         val response = api.getSignage()
         meshDataBase.withTransaction {
@@ -114,5 +134,134 @@ class MeshRepositoryImpl @Inject constructor(
     }.flowOn(Dispatchers.IO)
 
 
-
+    fun getMockDailyWeatherList(): List<GetDailyData> {
+        return listOf(
+            GetDailyData(
+                id = 1,
+                date = "2025-04-14 00:00:00",
+                description = "Overcast",
+                humidity = "87",
+                icon = "3",
+                windSpeed = 16.3,
+                sunrise = "2025-04-14 05:43:00",
+                sunset = "2025-04-14 18:10:00",
+                tempDay = null,
+                tempMin = 26.4,
+                tempMax = 35.0,
+                tempNight = null,
+                tempEve = null,
+                tempMorn = null,
+                pressure = 1009,
+                dewPoint = 25.2
+            ),
+            GetDailyData(
+                id = 2,
+                date = "2025-04-15 00:00:00",
+                description = "Rain showers: Slight",
+                humidity = "87",
+                icon = "80",
+                windSpeed = 13.8,
+                sunrise = "2025-04-15 05:42:00",
+                sunset = "2025-04-15 18:10:00",
+                tempDay = null,
+                tempMin = 26.7,
+                tempMax = 35.1,
+                tempNight = null,
+                tempEve = null,
+                tempMorn = null,
+                pressure = 1009,
+                dewPoint = 25.2
+            ),
+            GetDailyData(
+                id = 3,
+                date = "2025-04-16 00:00:00",
+                description = "Partly cloudy",
+                humidity = "87",
+                icon = "2",
+                windSpeed = 12.2,
+                sunrise = "2025-04-16 05:42:00",
+                sunset = "2025-04-16 18:10:00",
+                tempDay = null,
+                tempMin = 26.8,
+                tempMax = 34.9,
+                tempNight = null,
+                tempEve = null,
+                tempMorn = null,
+                pressure = 1009,
+                dewPoint = 25.2
+            ),
+            GetDailyData(
+                id = 4,
+                date = "2025-04-17 00:00:00",
+                description = "Overcast",
+                humidity = "87",
+                icon = "3",
+                windSpeed = 11.4,
+                sunrise = "2025-04-17 05:41:00",
+                sunset = "2025-04-17 18:10:00",
+                tempDay = null,
+                tempMin = 25.4,
+                tempMax = 36.9,
+                tempNight = null,
+                tempEve = null,
+                tempMorn = null,
+                pressure = 1009,
+                dewPoint = 25.2
+            ),
+            GetDailyData(
+                id = 5,
+                date = "2025-04-18 00:00:00",
+                description = "Overcast",
+                humidity = "87",
+                icon = "3",
+                windSpeed = 20.9,
+                sunrise = "2025-04-18 05:41:00",
+                sunset = "2025-04-18 18:10:00",
+                tempDay = null,
+                tempMin = 26.0,
+                tempMax = 37.9,
+                tempNight = null,
+                tempEve = null,
+                tempMorn = null,
+                pressure = 1009,
+                dewPoint = 25.2
+            ),
+            GetDailyData(
+                id = 6,
+                date = "2025-04-19 00:00:00",
+                description = "Partly cloudy",
+                humidity = "87",
+                icon = "2",
+                windSpeed = 16.2,
+                sunrise = "2025-04-19 05:40:00",
+                sunset = "2025-04-19 18:10:00",
+                tempDay = null,
+                tempMin = 27.1,
+                tempMax = 37.7,
+                tempNight = null,
+                tempEve = null,
+                tempMorn = null,
+                pressure = 1009,
+                dewPoint = 25.2
+            ),
+            GetDailyData(
+                id = 7,
+                date = "2025-04-20 00:00:00",
+                description = "Partly cloudy",
+                humidity = "87",
+                icon = "2",
+                windSpeed = 14.0,
+                sunrise = "2025-04-20 05:39:00",
+                sunset = "2025-04-20 18:10:00",
+                tempDay = null,
+                tempMin = 27.3,
+                tempMax = 37.8,
+                tempNight = null,
+                tempEve = null,
+                tempMorn = null,
+                pressure = 1009,
+                dewPoint = 25.2
+            )
+        )
+    }
 }

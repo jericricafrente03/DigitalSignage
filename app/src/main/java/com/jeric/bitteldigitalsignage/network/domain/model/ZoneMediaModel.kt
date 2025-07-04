@@ -3,6 +3,7 @@ package com.jeric.bitteldigitalsignage.network.domain.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import com.jeric.bitteldigitalsignage.network.data.remote.dto.TvChannelDto
 
 
 @Entity
@@ -26,5 +27,6 @@ data class ZoneMediaModel(
     @SerializedName("preview_thumbnail_url") val previewThumbnailUrl: String?,
     @SerializedName("layout_id") val layoutId: Int?,
     @SerializedName("channel_id") val channelId: Int?,
-    @SerializedName("media_type_name") val mediaTypeName: String
+    @SerializedName("media_type_name") val mediaTypeName: String,
+    @SerializedName("tv_channel") val tvChannel: TvChannelModel?,
 )

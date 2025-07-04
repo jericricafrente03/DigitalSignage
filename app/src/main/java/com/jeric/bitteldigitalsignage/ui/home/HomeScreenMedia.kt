@@ -48,21 +48,10 @@ class HomeScreenMedia : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                launch {
-                    homeViewModel.reCreate.collectLatest { recreate ->
-                        if (recreate && mediaFragment.isAdded) {
-                            requireActivity().finish()
-                            startActivity(requireActivity().intent)
-                        }
-                    }
-                }
-
-                launch {
-                    homeViewModel.zoneMediaFlow.collectLatest { zoneMedia->
-                        launch {
-                            homeViewModel.zoneState.collectLatest { zoneState ->
-                                displayMedia(zoneState, zoneMedia)
-                            }
+                homeViewModel.zoneMediaFlow.collectLatest { zoneMedia->
+                    launch {
+                        homeViewModel.zoneState.collectLatest { zoneState ->
+                            displayMedia(zoneState, zoneMedia)
                         }
                     }
                 }

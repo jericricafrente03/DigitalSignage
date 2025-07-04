@@ -14,7 +14,7 @@
         android:format12Hour="hh:mm a \n MMMM dd, yyyy, EEE "
         android:fontFamily="@font/itc"
         android:layout_weight="1"
-        android:textColor="@color/taal_vista"
+        android:textColor="@color/black"
         android:textSize="40sp"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="@id/gl_ver_2"

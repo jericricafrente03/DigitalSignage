@@ -42,6 +42,7 @@ class HomeScreen : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         homeViewModel.getSignageDataModel()
+        homeViewModel.getDailyWeather()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

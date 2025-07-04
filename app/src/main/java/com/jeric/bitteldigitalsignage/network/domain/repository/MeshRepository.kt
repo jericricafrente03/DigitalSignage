@@ -8,6 +8,8 @@ import com.jeric.bitteldigitalsignage.network.domain.model.ZoneModel
 import com.jeric.bitteldigitalsignage.network.domain.model.register.response.PostResponse
 import com.jeric.bitteldigitalsignage.network.domain.model.stb.StbRegistration
 import com.jeric.bitteldigitalsignage.network.domain.model.time.GetTimeData
+import com.jeric.bitteldigitalsignage.network.domain.model.weather.daily.GetDailyData
+import com.jeric.bitteldigitalsignage.network.domain.model.weather.hourly.HourlyWeatherData
 import com.jeric.bitteldigitalsignage.network.util.DataState
 import kotlinx.coroutines.flow.Flow
 
@@ -22,4 +24,7 @@ interface MeshRepository {
     fun getSignageDataModel(): Flow<SignageDataModel>
     fun getZoneMediaModel(): Flow<List<ZoneMediaModel>>
     fun getZoneModel(): Flow<List<ZoneModel>>
+
+    fun getDailyWeather(): Flow<List<GetDailyData>>
+    fun getHourlyWeather(): Flow<List<HourlyWeatherData>>
 }

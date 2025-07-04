@@ -3,12 +3,14 @@ package com.jeric.bitteldigitalsignage.network.data.mapper
 import com.jeric.bitteldigitalsignage.network.data.remote.dto.LayoutDto
 import com.jeric.bitteldigitalsignage.network.data.remote.dto.MediaDto
 import com.jeric.bitteldigitalsignage.network.data.remote.dto.SignageDataDto
+import com.jeric.bitteldigitalsignage.network.data.remote.dto.TvChannelDto
 import com.jeric.bitteldigitalsignage.network.data.remote.dto.ZoneDto
 import com.jeric.bitteldigitalsignage.network.data.remote.dto.ZoneMediaDto
 import com.jeric.bitteldigitalsignage.network.domain.model.GetSignageModel
 import com.jeric.bitteldigitalsignage.network.domain.model.LayoutModel
 import com.jeric.bitteldigitalsignage.network.domain.model.MediaModel
 import com.jeric.bitteldigitalsignage.network.domain.model.SignageDataModel
+import com.jeric.bitteldigitalsignage.network.domain.model.TvChannelModel
 import com.jeric.bitteldigitalsignage.network.domain.model.ZoneMediaModel
 import com.jeric.bitteldigitalsignage.network.domain.model.ZoneModel
 
@@ -32,7 +34,14 @@ fun LayoutDto.toLayoutDomain(): LayoutModel {
 
 fun ZoneMediaDto.toZoneModelDomain(): ZoneMediaModel {
     return ZoneMediaModel(
-        id, mediaId, zoneId, signageId, zone, timeStart, timeEnd, deletedAt, createdAt, updatedAt, orientation, name, description, typeId, previewUrl, previewThumbnailUrl, layoutId, channelId, mediaTypeName
+        id, mediaId, zoneId, signageId, zone, timeStart, timeEnd, deletedAt, createdAt, updatedAt, orientation, name, description, typeId, previewUrl, previewThumbnailUrl, layoutId, channelId, mediaTypeName,
+        tvChannel = this.tvChannel?.toTVDomain()
+    )
+}
+
+fun TvChannelDto.toTVDomain(): TvChannelModel {
+    return TvChannelModel(
+       id, channel, name, description, channelUri, categoryId, orderNo, imgUri, imgThumbnailUri, isEnable, createdAt, updatedAt, deletedAt
     )
 }
 

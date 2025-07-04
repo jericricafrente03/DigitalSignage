@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="5dp"
-    tools:background="#353021">
+    android:background="#353021">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
@@ -17,8 +17,10 @@
 
         <ImageView
             android:id="@+id/iv_icon"
+            android:src="@drawable/w01d"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/desc"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -35,7 +37,7 @@
             app:layout_constraintHorizontal_bias="1"
             app:layout_constraintBottom_toTopOf="@id/gl1"
             app:layout_constraintStart_toEndOf="@id/iv_icon"
-            tools:text="35°C" />
+            android:text="35°C" />
 
         <com.jeric.bitteldigitalsignage.ui.components.ScrollingTextview
             android:id="@+id/tv_description"
@@ -47,7 +49,7 @@
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="@id/tv_temp"
             app:layout_constraintTop_toBottomOf="@id/gl1"
-            tools:text="light intensity shower rain" />
+            android:text="light intensity shower rain" />
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/gl1"
             android:layout_width="wrap_content"

@@ -65,6 +65,6 @@ dependencies {
 
     implementation(libs.toaster)
     implementation(libs.coil)
-
+    implementation(libs.vlc)
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 }

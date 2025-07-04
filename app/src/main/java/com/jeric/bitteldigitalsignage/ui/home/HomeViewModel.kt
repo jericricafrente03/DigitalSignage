@@ -10,6 +10,7 @@ import com.jeric.bitteldigitalsignage.network.domain.model.MediaModel
 import com.jeric.bitteldigitalsignage.network.domain.model.SignageDataModel
 import com.jeric.bitteldigitalsignage.network.domain.model.ZoneMediaModel
 import com.jeric.bitteldigitalsignage.network.domain.model.ZoneModel
+import com.jeric.bitteldigitalsignage.network.domain.model.weather.daily.GetDailyData
 import com.jeric.bitteldigitalsignage.network.domain.repository.MeshRepository
 import com.jeric.bitteldigitalsignage.network.util.DataState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -29,6 +30,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.net.InetAddress
 import java.net.URL
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
@@ -45,15 +49,17 @@ class HomeViewModel @Inject constructor(
     private val _zoneMediaFlow = MutableSharedFlow<List<ZoneMediaModel>>(replay = 1)
     val zoneMediaFlow: SharedFlow<List<ZoneMediaModel>> = _zoneMediaFlow.asSharedFlow()
 
-    val reCreate = MutableSharedFlow<Boolean>()
+    private val _weatherUiState = MutableSharedFlow<List<GetDailyData>>(replay = 1)
+    val weatherUiState: SharedFlow<List<GetDailyData>> = _weatherUiState.asSharedFlow()
+
+    private val _weatherUiStateToday = MutableSharedFlow<GetDailyData>(replay = 1)
+    val weatherUiStateToday: SharedFlow<GetDailyData> = _weatherUiStateToday.asSharedFlow()
 
     init {
         startHttpMessageCollection()
     }
 
-    fun reCreate(boolean: Boolean) = viewModelScope.launch {
-        reCreate.emit(boolean)
-    }
+
 
     private suspend fun getSbTime() {
         while (true) {
@@ -64,6 +70,30 @@ class HomeViewModel @Inject constructor(
             } else if (getTimeData is DataState.Success) {
                 break
             }
+        }
+    }
+
+    fun getDailyWeather() = viewModelScope.launch {
+        try {
+            meshRepository.getDailyWeather().collectLatest { weeklyWed ->
+                val format = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                val currentData = format.format(Date())
+                val todayDate = format.parse(currentData)
+                val result = weeklyWed.filter { dates ->
+                    val end = dates.date.let { format.parse(it) }
+                    todayDate!! < end
+                }.take(3)
+                val today = weeklyWed.filter { dates ->
+                    val end = dates.date.let { format.parse(it) }
+                    todayDate!! == end
+                }
+                val cacheResult = result.ifEmpty { weeklyWed.takeLast(3) }
+                val cacheResultToday = today.ifEmpty { weeklyWed.takeLast(1) }.last()
+                _weatherUiState.emit(cacheResult)
+                _weatherUiStateToday.emit(cacheResultToday)
+            }
+        }catch (e: Exception){
+            e.printStackTrace()
         }
     }
 

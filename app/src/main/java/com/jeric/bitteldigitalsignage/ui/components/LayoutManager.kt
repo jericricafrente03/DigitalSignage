@@ -91,8 +91,8 @@ class LayoutManager {
     fun getWeatherLayout(id: Int): Int = when (id) {
         32 -> R.layout.weather_32
         33 -> R.layout.weather_33
-        35 -> R.layout.weather_35
         34 -> R.layout.weather_40
+        35 -> R.layout.weather_35
         52 -> R.layout.weather_52
         56 -> R.layout.weather_56
         else -> 0

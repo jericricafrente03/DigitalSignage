@@ -21,6 +21,7 @@ coil-version = "2.7.0"
 view-model-fragment = "1.8.8"
 toast = "1.4"
 hilt-nav = "1.2.0"
+vlc-version = "3.3.4"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -46,7 +47,7 @@ fragment-viewmodel = { module = "androidx.fragment:fragment-ktx", version.ref = 
 coil = { module = "io.coil-kt:coil", version.ref = "coil-version"}
 toaster = { module = "com.github.Spikeysanju:MotionToast", version.ref = "toast"}
 navigation-hilt = { module = "androidx.hilt:hilt-navigation-fragment", version.ref = "hilt-nav" }
-
+vlc = { module = "org.videolan.android:libvlc-all", version.ref = "vlc-version" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
