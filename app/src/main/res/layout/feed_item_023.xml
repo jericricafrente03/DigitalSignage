@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="2dp"
+    android:orientation="vertical">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_logo"
+            android:layout_width="0dp"
+            android:layout_height="110dp"
+            android:padding="5dp"
+            android:src="@drawable/meshlogo"
+            android:scaleType="fitCenter"
+            android:fontFamily="@font/bold_itc"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/gl_ver_2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/desc" />
+
+        <LinearLayout
+            android:id="@+id/view"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:weightSum="16"
+            android:layout_marginStart="10dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/gl_ver_2"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.jeric.bitteldigitalsignage.ui.components.ScrollingTextview
+                android:id="@+id/tv_company"
+                android:layout_weight="5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/itclight"
+                android:textStyle="bold"
+                android:gravity="start|center"
+                android:textColor="@color/NoteColor8"
+                app:autoSizeMaxTextSize="45sp"
+                app:autoSizeMinTextSize="10sp"
+                app:autoSizeStepGranularity="6sp"
+                app:autoSizeTextType="uniform"
+                android:maxLines="1"
+                tools:text="FIREWORKS SHOW" />
+            <View
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@color/NoteColor8"
+                android:layout_weight="1"
+                android:id="@+id/lineColor"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"/>
+
+            <com.jeric.bitteldigitalsignage.ui.components.ScrollingTextview
+                android:id="@+id/tv_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|start"
+                android:layout_weight="5"
+                android:fontFamily="@font/itclight"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                app:autoSizeMaxTextSize="45sp"
+                app:autoSizeMinTextSize="10sp"
+                app:autoSizeStepGranularity="6sp"
+                app:autoSizeTextType="uniform"
+                android:maxLines="1"
+                tools:text="That does show me the package info but" />
+
+            <com.jeric.bitteldigitalsignage.ui.components.ScrollingTextview
+                android:id="@+id/tv_schedule"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|start"
+                android:layout_weight="5"
+                android:fontFamily="@font/itclight"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                app:autoSizeMaxTextSize="45sp"
+                app:autoSizeMinTextSize="10sp"
+                app:autoSizeStepGranularity="6sp"
+                app:autoSizeTextType="uniform"
+                android:maxLines="1"
+                tools:text="9:50 AM - 1:50 PM" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_ver_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_ver_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.5" />
+        </LinearLayout>
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_ver_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.30" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

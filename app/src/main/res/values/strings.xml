@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">GoogleTV</string>
+
+<!--   Login -->
+
+    <string name="description">"Desc"</string>
+    <string name="room">DEVICE LOCATION</string>
+    <string name="desc">description</string>
+    <string name="ip_address">IP ADDRESS</string>
+    <string name="ip">VALIDATE IP</string>
+    <string name="login">LOGIN</string>
+    <string name="introduction">MeshTV brings entertainment and functionality to the guest’s fingertips. Crystal clear reception over low bandwidth. Provides access to hotel services like dining, concierge, and facilities inside your room.</string>
+    <string name="register">REGISTER</string>
+    <string name="area_id">AREA ID</string>
+    <string name="mac">MAC ADDRESS</string>
+    <string name="port">PORT</string>
+    <string name="made_by_nbittel_asia_inc">Made by\nBittel Asia Inc.</string>
+    <string name="failed">Failed ☹️</string>
+    <string name="diagnose_server">DIAGNOSE SERVER</string>
+    <string name="iptv_empty">IP cannot be empty</string>
+    <string name="iptv_invalid">That\'s not a valid IP Address</string>
+    <string name="port_empty">Port cannot be empty</string>
+    <string name="mac_empty">Mac address cannot be empty</string>
+    <string name="room_empty">Room cannot be empty</string>
+    <string name="area_id_empty">Area ID cannot be empty</string>
+    <string name="unknown_error">Unknown error, please try again later!</string>
+    <string name="empty"> </string>
+    <string name="successfully">Successfully Registered!</string>
+    <string name="hurray">Hurray success 😍</string>
+    <string name="no_available">Not available because no guest is assigned to this room.</string>
+
+
+
+    <string name="today_s_events">TODAY\'S EVENTS</string>
+    <string name="group_event">GROUP / EVENT</string>
+    <string name="time">TIME</string>
+    <string name="location">LOCATION</string>
+    <string name="ss">GROUP / EVENT</string>
+    <string name="locations">LOCATION</string>
+    <string name="times">TIME</string>
+    <string name="start_time">Start Time</string>
+    <string name="todo">TODO</string>
+    <string name="end_time">End Time</string>
+    <string name="event_name">Event Name</string>
+
+    <string name="lorem">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</string>
+    <string name="today">Today</string>
+
+</resources>

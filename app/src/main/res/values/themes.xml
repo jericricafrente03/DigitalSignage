@@ -1,0 +1,127 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.BittelDigitalSignage" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="Theme.BittelDigitalSignage" parent="Base.Theme.BittelDigitalSignage" />
+
+    <style name="VeryTextSmall">
+        <item name="android:textSize">14sp</item>
+        <item name="android:color">#4f4f4f</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+
+    <style name="DefaultTextMedium">
+        <item name="android:textSize">20sp</item>
+        <item name="android:color">#4f4f4f</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+
+    <style name="DefaultTextSmall">
+        <item name="android:textSize">18sp</item>
+        <item name="android:color">#4f4f4f</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+
+    <style name="DefaultTextRegular">
+        <item name="android:textSize">23sp</item>
+        <item name="android:color">#4f4f4f</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+
+    <style name="DefaultTextLarge">
+        <item name="android:textSize">28sp</item>
+        <item name="android:color">#4f4f4f</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+
+    <style name="titleLarge">
+        <item name="android:textSize">22sp</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+
+    <style name="titleMedium">
+        <item name="android:textSize">17sp</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+
+    <style name="headlineSmall">
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+
+    <style name="headlineMedium">
+        <item name="android:textSize">28sp</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+
+    <style name="headlineLarge">
+        <item name="android:textSize">27sp</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+
+    <style name="displaySmall">
+        <item name="android:textSize">36sp</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+
+    <style name="displayMedium">
+        <item name="android:textSize">42sp</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+
+    <style name="displayLarge">
+        <item name="android:textSize">52sp</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+
+    <style name="tiEitTextTextInput">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+
+    <style name="tiEitText" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/text_input_layout_stroke_color</item>
+        <item name="singleLine">true</item>
+        <item name="android:imeOptions">actionNext</item>
+        <item name="errorEnabled">true</item>
+        <item name="android:textColorHint">#A4A4A4</item>
+        <item name="hintTextColor">#A4A4A4</item>
+        <item name="boxCornerRadiusBottomEnd">50dp</item>
+        <item name="boxCornerRadiusBottomStart">50dp</item>
+        <item name="boxCornerRadiusTopStart">50dp</item>
+        <item name="boxCornerRadiusTopEnd">50dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:padding">5dp</item>
+    </style>
+
+    <style name="TextAppearance.App.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="android:textColor">#FFC107</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:padding">5dp</item>
+    </style>
+
+    <style name="ShapeAppearance.App.Circle" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="ShapeAppearance" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="android:topRightRadius">100dp</item>
+        <item name="android:topLeftRadius">100dp</item>
+        <item name="android:bottomRightRadius">100dp</item>
+        <item name="android:bottomLeftRadius">100dp</item>
+    </style>
+
+    <style name="customRoundedImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">0dp</item>
+        <item name="cornerSizeTopRight">8dp</item>
+        <item name="cornerSizeTopLeft">8dp</item>
+        <item name="cornerSizeBottomLeft">8dp</item>
+        <item name="cornerSizeBottomRight">8dp</item>
+    </style>
+</resources>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#2e3f46"
+    android:orientation="vertical"
+    android:padding="5dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/gl_ver_5"
+        android:layout_width="0dp"
+        android:id="@+id/top"
+        android:weightSum="10"
+        android:orientation="horizontal"
+        android:layout_height="0dp">
+            <LinearLayout
+                android:layout_weight="4"
+                android:weightSum="8"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                tools:ignore="UselessParent">
+                <TextClock
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="2:13 AM"
+                    android:layout_weight="6"
+                    android:textColor="@color/white"
+                    android:format12Hour="hh:mm a"
+                    android:fontFamily="@font/itc"
+                    android:id="@+id/clock1"
+                    android:textSize="40sp"
+                    android:gravity="bottom|end"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    tools:ignore="NestedWeights" />
+                <TextClock
+                    app:layout_constraintTop_toBottomOf="@id/clock1"
+                    app:layout_constraintStart_toStartOf="@id/clock1"
+                    tools:text="Tue, Nov. 26"
+                    android:gravity="top|end"
+                    android:layout_weight="2"
+                    android:textColor="@color/white"
+                    android:format12Hour="EEE, MMM. dd"
+                    android:fontFamily="@font/itclight"
+                    android:id="@+id/clock3"
+                    android:textSize="35sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_weight="6"
+                android:id="@+id/tv_title"
+                android:layout_width="0dp"
+                android:gravity="center"
+                app:autoSizeMaxTextSize="35sp"
+                app:autoSizeMinTextSize="10sp"
+                app:autoSizeStepGranularity="2sp"
+                app:autoSizeTextType="uniform"
+                android:minLines="2"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/itc"
+                android:padding="10dp"
+                tools:text="Today's meetings and events"
+                android:textColor="@color/white" />
+    </LinearLayout>
+
+
+
+
+
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_ver_1"
+        app:layout_constraintGuide_percent="0.35"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_ver_2"
+        app:layout_constraintGuide_percent="0.70"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_feed"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gl_ver_5"
+        app:layout_constraintVertical_bias="0.0"
+        tools:listitem="@layout/feed_item_054" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_ver_5"
+        app:layout_constraintGuide_percent="0.15"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

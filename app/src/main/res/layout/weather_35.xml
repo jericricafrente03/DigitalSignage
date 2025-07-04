@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="5dp"
+    tools:background="#222A2E">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/d1_01d" />
+
+    <com.jeric.bitteldigitalsignage.ui.components.ScrollingTextview
+        android:id="@+id/tv_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/itc"
+        android:maxLength="20"
+        android:textColor="#fff"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@id/iv_temp"
+        app:layout_constraintStart_toStartOf="@id/tv_temp"
+        app:layout_constraintTop_toTopOf="@id/iv_icon"
+        tools:text="Sunny" />
+
+    <ImageView
+        android:id="@+id/iv_temp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginBottom="5dp"
+        android:src="@drawable/temp2"
+        android:layout_marginStart="10dp"
+        app:layout_constraintStart_toEndOf="@id/iv_icon"
+        app:layout_constraintBottom_toTopOf="@id/gl3"
+        />
+
+    <TextView
+        android:id="@+id/tv_temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:fontFamily="@font/itc"
+        android:textColor="#fff"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/iv_temp"
+        app:layout_constraintStart_toEndOf="@id/iv_temp"
+        app:layout_constraintTop_toTopOf="@id/iv_temp"
+        tools:text="35°C" />
+
+    <ImageView
+        android:id="@+id/iv_humidity"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/humidity"
+        android:layout_marginStart="10dp"
+        app:layout_constraintStart_toEndOf="@id/iv_icon"
+        app:layout_constraintTop_toBottomOf="@id/gl3"
+        />
+
+    <TextView
+        android:id="@+id/tv_humidity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:fontFamily="@font/itc"
+        android:text="68%"
+        android:textColor="#fff"
+        android:textSize="20sp"
+        app:layout_constraintTop_toTopOf="@id/iv_humidity"
+        app:layout_constraintStart_toEndOf="@id/iv_humidity"
+        app:layout_constraintBottom_toBottomOf="@id/iv_humidity"
+        />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".33"
+            />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".66"
+            />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".5"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

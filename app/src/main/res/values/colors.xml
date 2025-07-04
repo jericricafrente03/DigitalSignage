@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="gold">#FFCBAC6D</color>
+    <color name="red">#b20a07</color>
+    <color name="malabnaw">#D5D0D0</color>
+
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="colorPI">#0a0986</color>
+    <color name="colorPrimary">#232F34</color>
+    <color name="dark_blue_600">#4A6572</color>
+    <color name="dark_blue_700">#344955</color>
+    <color name="colorSecondary">#F9AA33</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="holiday_inn">#509e30</color>
+    <color name="forest_green">#228B22</color>
+    <color name="holiday_inn_trans">#88509e30</color>
+    <color name="holiday_inn_contrast">#9A32CD</color>
+    <color name="green">#99c09f</color>
+    <color name="progress_bar">#ce5310</color>
+    <color name="taal_vista">#254ea0</color>
+    <color name="taal_vista_trans">#77254ea0</color>
+    <color name="gray">#6d6d6d</color>
+    <color name="gray_88">#4D546b51</color>
+    <color name="green_light">#d2eeaa</color>
+
+    <color name="NoteColor1">#00b592</color>
+    <color name="NoteColor2">#cc14e8</color>
+    <color name="NoteColor3">#eb1314</color>
+    <color name="NoteColor4">#1c4dcd</color>
+    <color name="NoteColor5">#419e1c</color>
+    <color name="NoteColor6">#dba800</color>
+    <color name="NoteColor7">#084353</color>
+    <color name="NoteColor8">#fd9e02</color>
+</resources>

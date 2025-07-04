@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:background="#FFEB3B">
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        app:layout_constraintStart_toStartOf="@id/parentLayout"
+        app:layout_constraintEnd_toEndOf="@id/parentLayout"
+        app:layout_constraintBottom_toTopOf="@id/parentLayout"
+        android:layout_marginBottom="5dp"
+        android:background="@color/taal_vista"/>
+
+    <LinearLayout
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="wrap_content"
+        android:id="@+id/parentLayout"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        tools:background="#FFEB3B">
+
+        <TextClock
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fontFamily="@font/itc"
+            android:format12Hour="MMMM dd, yyyy"
+            android:gravity="center|end"
+            android:textColor="@color/taal_vista"
+            android:textSize="30sp"
+            tools:text="Dec 12, 2018" />
+
+        <TextClock
+            android:id="@+id/textClock"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fontFamily="@font/itc"
+            android:format12Hour="hh:mm a"
+            android:gravity="center|start"
+            android:paddingStart="24sp"
+            android:textColor="@color/taal_vista"
+            android:textSize="30sp"
+            tools:text="2:13 PM" />
+
+    </LinearLayout>
+
+    <View
+        app:layout_constraintStart_toStartOf="@id/parentLayout"
+        app:layout_constraintEnd_toEndOf="@id/parentLayout"
+        app:layout_constraintTop_toBottomOf="@id/parentLayout"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/taal_vista"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:id="@+id/parentLayout22a"
+        android:layout_height="300dp"
+        tools:background="#00C8A0"
+        android:padding="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/gl_ver_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_company"
+            android:layout_width="match_parent"
+            android:paddingStart="10dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:background="#200303"
+            android:fontFamily="@font/itc"
+            android:gravity="bottom|start"
+            android:textSize="40sp"
+            android:textColor="#fff"
+            app:autoSizeTextType="uniform"
+            tools:text="Marketing Meeting" />
+
+        <TextView
+            android:id="@+id/tv_schedule"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:background="#0D4BC8"
+            android:gravity="center|start"
+            android:fontFamily="@font/itclight"
+            android:paddingStart="10dp"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/tv_company"
+            app:layout_constraintStart_toStartOf="@id/tv_company"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:autoSizeTextType="uniform"
+            tools:text="12:30 AM-1:30 PM" />
+
+        <TextView
+            android:id="@+id/tv_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:background="#05EC23"
+            android:fontFamily="@font/itclight"
+            android:textColor="@color/white"
+            android:paddingStart="10dp"
+            android:textSize="32sp"
+            android:gravity="center|start"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/tv_schedule"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="12:30 AM-1:30 PM"
+             />
+
+        <TextView
+            android:id="@+id/tv_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:background="#0D4BC8"
+            android:gravity="center|start"
+            android:fontFamily="@font/itclight"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/tv_location"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tv_location"
+            tools:text="@string/lorem" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:contentDescription="@string/desc"
+        android:scaleType="fitCenter"
+        android:src="@drawable/meshlogo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/gl_ver_1"
+        app:layout_constraintTop_toTopOf="@id/parentLayout22a"
+        tools:background="#DA0303" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_ver_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".65"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:background="#FFEB3B"
+    android:orientation="horizontal"
+    android:weightSum="2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextClock
+        android:id="@+id/textClock"
+        android:layout_width="0dp"
+        android:gravity="center|end"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/itc"
+        android:layout_weight="1"
+        android:format12Hour="hh:mm a"
+        android:paddingEnd="24dp"
+        android:textColor="@color/taal_vista"
+        android:textSize="30sp"
+        tools:text="2:13 PM" />
+
+    <TextClock
+        android:id="@+id/tv_date"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:format12Hour="MM/dd/yyy"
+        android:fontFamily="@font/itc"
+        android:gravity="center|start"
+        android:textColor="@color/taal_vista"
+        android:textSize="30sp"
+        tools:text="06/12/2018" />
+
+
+
+</LinearLayout>
