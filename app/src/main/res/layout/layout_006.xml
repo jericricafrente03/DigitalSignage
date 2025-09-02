@@ -39,16 +39,17 @@
         app:layout_constraintGuide_percent="0.1" />
 
 
+
     <LinearLayout
         android:id="@+id/zone_01"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/gl_hor"
-        app:layout_constraintLeft_toRightOf="@+id/gl_ver"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/gl_ver2"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:background="#D10E0E" />
+        tools:background="#1064E3" />
 
     <LinearLayout
         android:id="@+id/zone_02"
@@ -56,31 +57,11 @@
         android:layout_height="0dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/gl_ver2"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gl_hor"
-        tools:background="#1064E3" />
-
-    <LinearLayout
-        android:id="@+id/zone_03"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/gl_ver2"
-        app:layout_constraintTop_toBottomOf="@+id/gl_hor"
+        app:layout_constraintTop_toTopOf="parent"
         tools:background="#3EDA14" />
 
-    <LinearLayout
-        android:id="@+id/zone_04"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/gl_hor"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/gl_ver"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:background="#05D2E4" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

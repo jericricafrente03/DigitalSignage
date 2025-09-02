@@ -1,0 +1,128 @@
+package com.jeric.bitteldigitalsignage.ui.runninglayout
+
+import android.annotation.SuppressLint
+import android.content.Context
+import android.os.Handler
+import android.os.Message
+import android.util.AttributeSet
+import android.view.LayoutInflater
+import android.view.MotionEvent
+import android.view.View
+import android.view.ViewGroup
+import android.widget.FrameLayout
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import coil.load
+import coil.request.CachePolicy
+import com.jeric.bitteldigitalsignage.R
+import com.jeric.bitteldigitalsignage.datastore.model.STB
+import com.jeric.bitteldigitalsignage.network.domain.model.EventFeedModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.lang.ref.WeakReference
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
+
+class Layout42 @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) : FrameLayout(context, attrs, defStyleAttr) {
+    private val mHandler: ScrollHandler
+    private val mAdapter: MyAdapter
+    private val recyclerView: RecyclerView
+    override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
+        return false
+    }
+    @SuppressLint("SimpleDateFormat", "WeekBasedYear")
+    fun layout42(data: List<EventFeedModel>, media: String) {
+        val name = findViewById<TextView>(R.id.tv_title)
+        val month = findViewById<TextView>(R.id.tv_month)
+        mAdapter.setList(data)
+        if (data.isNotEmpty()) {
+            mHandler.sendEmptyMessageDelayed(0, 100)
+            name?.text= media
+            val dateFormat3: DateFormat = SimpleDateFormat("MMMM YYYY")
+            month?.text = dateFormat3.format(Date())
+        }
+    }
+    fun smoothScroll() {
+        recyclerView.smoothScrollBy(0, 5)
+        mHandler.sendEmptyMessageDelayed(0, 100)
+    }
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        mHandler.removeCallbacksAndMessages(null)
+    }
+    private class ScrollHandler(mView: Layout42?) : Handler() {
+        private val view: WeakReference<Layout42?> = WeakReference(mView)
+        override fun handleMessage(msg: Message) {
+            super.handleMessage(msg)
+            if (view.get() != null) {
+                view.get()!!.smoothScroll()
+            }
+        }
+    }
+    private class MyAdapter : RecyclerView.Adapter<ViewHolder>() {
+        private val list: MutableList<EventFeedModel> = ArrayList()
+
+        @SuppressLint("NotifyDataSetChanged")
+        fun setList(list: List<EventFeedModel>) {
+            this.list.clear()
+            this.list.addAll(list)
+            notifyDataSetChanged()
+        }
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+            val view: View = LayoutInflater.from(parent.context).inflate(R.layout.feed_item_042, parent, false)
+            return ViewHolder(view)
+        }
+        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+            holder.bind(list[position % list.size])
+        }
+        override fun getItemCount(): Int {
+            return if (list.size > 0) Int.MAX_VALUE else 0
+        }
+    }
+    private class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        @SuppressLint("SimpleDateFormat")
+        fun bind(data: EventFeedModel) {
+            CoroutineScope(Dispatchers.Main).launch {
+                launch {
+                    val logo = itemView.findViewById<ImageView>(R.id.iv_logo)
+                    val tvCompany = itemView.findViewById<TextView>(R.id.tv_company)
+                    val tvEvent = itemView.findViewById<TextView>(R.id.tv_description)
+                    val tvLocation = itemView.findViewById<TextView>(R.id.tv_location)
+                    val tvGroupEvent = itemView.findViewById<TextView>(R.id.tv_group_event)
+                    val tvSchedule = itemView.findViewById<TextView>(R.id.tv_schedule)
+                    val imageUri = "${STB.HOST}:${STB.PORT}/" + data.imgUri
+                    logo?.load(imageUri) {
+                        memoryCachePolicy(CachePolicy.DISABLED)
+                    }
+                    tvGroupEvent?.text = data.owner
+                    tvCompany?.text = data.owner
+                    tvEvent?.text = data.description
+                    tvLocation?.text = data.location
+                    if (data.start?.isNotEmpty() == true && data.end?.isNotEmpty() == true) {
+                        val format1 = SimpleDateFormat("yyyy-MM-dd kk:mm:ss")
+                        val dateFormat3: DateFormat = SimpleDateFormat("dd\nMMM")
+                        val scheduleStartDate = format1.parse(data.start)
+                        val start = dateFormat3.format(scheduleStartDate!!)
+                        tvSchedule?.text = start
+                    }
+                }
+            }
+        }
+    }
+    init {
+        inflate(context, R.layout.feed_042, this)
+        mHandler = ScrollHandler(this)
+        mAdapter = MyAdapter()
+        recyclerView = findViewById<View>(R.id.rv_feed42) as RecyclerView
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = mAdapter
+    }
+}

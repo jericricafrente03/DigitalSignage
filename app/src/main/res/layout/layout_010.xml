@@ -44,8 +44,8 @@
         android:layout_height="0dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/gl_hor"
-        app:layout_constraintLeft_toRightOf="@+id/gl_ver"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/gl_ver"
         app:layout_constraintTop_toTopOf="parent"
         tools:background="#00BCD4" />
 
@@ -54,10 +54,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/gl_hor2"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/gl_hor"
+        app:layout_constraintLeft_toLeftOf="@id/gl_ver"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gl_hor"
+        app:layout_constraintTop_toTopOf="parent"
         tools:background="#FF5722" />
 
     <LinearLayout
@@ -68,18 +68,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gl_hor2"
+        app:layout_constraintTop_toBottomOf="@+id/gl_hor"
         tools:background="#FFC107" />
 
-    <LinearLayout
-        android:id="@+id/zone_04"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/gl_hor"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/gl_ver"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:background="#3F51B5" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

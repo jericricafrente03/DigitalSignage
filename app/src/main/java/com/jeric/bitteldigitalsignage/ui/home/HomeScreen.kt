@@ -2,15 +2,9 @@ package com.jeric.bitteldigitalsignage.ui.home
 
 import android.content.res.Resources
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -19,15 +13,11 @@ import com.google.android.material.snackbar.Snackbar
 import com.jeric.bitteldigitalsignage.R
 import com.jeric.bitteldigitalsignage.databinding.FragmentHomeBinding
 import com.jeric.bitteldigitalsignage.datastore.model.STB
-import com.jeric.bitteldigitalsignage.http.HTTPConnection
 import com.jeric.bitteldigitalsignage.network.domain.model.SignageDataModel
-import com.jeric.bitteldigitalsignage.network.util.DataState
-import com.jeric.bitteldigitalsignage.network.util.attachFragment
 import com.jeric.bitteldigitalsignage.ui.components.LayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-
 
 @AndroidEntryPoint
 class HomeScreen : AppCompatActivity() {
@@ -87,13 +77,10 @@ class HomeScreen : AppCompatActivity() {
                         1 -> attachFragment(zoneFragment, R.id.zone_01, "zone1")
                         2 -> attachFragment(zoneFragment, R.id.zone_02, "zone2")
                         3 -> attachFragment(zoneFragment, R.id.zone_03, "zone3")
-                        4 -> attachFragment(zoneFragment, R.id.zone_04, "zone4")
-                        5 -> attachFragment(zoneFragment, R.id.zone_05, "zone5")
-                        6 -> attachFragment(zoneFragment, R.id.zone_06, "zone6")
                     }
                 }
             } catch (e: Resources.NotFoundException) {
-                Snackbar.make(root, "Error loading layout", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(root, "Error loading layout $e", Snackbar.LENGTH_SHORT).show()
             }
         }
     }

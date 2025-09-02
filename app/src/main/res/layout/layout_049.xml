@@ -51,19 +51,8 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.85" />
+        app:layout_constraintGuide_percent="0.99" />
 
-    <LinearLayout
-        android:id="@+id/zone_01"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="4dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/gl_hor_1"
-        app:layout_constraintLeft_toRightOf="@+id/gl_ver_1"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:background="#FF5722" />
 
     <LinearLayout
         android:id="@+id/zone_02"
@@ -71,38 +60,18 @@
         android:layout_height="0dp"
         android:layout_margin="4dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/gl_hor_2"
+        app:layout_constraintBottom_toTopOf="@+id/gl_hor_4"
         app:layout_constraintLeft_toRightOf="@+id/gl_ver_1"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/gl_hor_1"
         tools:background="#00BCD4" />
 
-    <LinearLayout
-        android:id="@+id/zone_03"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="4dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/gl_ver_1"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/gl_hor_2"
-        tools:background="#3F51B5" />
+
+
+
 
     <LinearLayout
-        android:id="@+id/zone_04"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="4dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/gl_hor_4"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/gl_ver_1"
-        app:layout_constraintTop_toBottomOf="@id/gl_hor_3"
-        tools:background="#FFC107" />
-
-    <LinearLayout
-        android:id="@+id/zone_05"
+        android:id="@+id/zone_01"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="4dp"
