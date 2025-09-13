@@ -1,11 +1,17 @@
 package com.jeric.bitteldigitalsignage.ui.home
 
+import android.app.Application
+import android.content.Context
 import android.util.Log
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.gson.Gson
+import com.jeric.bitteldigitalsignage.R
 import com.jeric.bitteldigitalsignage.datastore.DataStoreOperations
 import com.jeric.bitteldigitalsignage.datastore.model.STB
 import com.jeric.bitteldigitalsignage.http.HTTPConnection
+import com.jeric.bitteldigitalsignage.network.domain.model.GetSignageModel
 import com.jeric.bitteldigitalsignage.network.domain.model.MediaModel
 import com.jeric.bitteldigitalsignage.network.domain.model.SignageDataModel
 import com.jeric.bitteldigitalsignage.network.domain.model.ZoneMediaModel
@@ -13,6 +19,7 @@ import com.jeric.bitteldigitalsignage.network.domain.model.ZoneModel
 import com.jeric.bitteldigitalsignage.network.domain.model.weather.daily.GetDailyData
 import com.jeric.bitteldigitalsignage.network.domain.repository.MeshRepository
 import com.jeric.bitteldigitalsignage.network.util.DataState
+import dagger.hilt.android.internal.Contexts.getApplication
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -38,7 +45,8 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val meshRepository: MeshRepository,
-) : ViewModel() {
+    private val application: Application
+) : AndroidViewModel(application) {
 
     private val _signageDataState = MutableSharedFlow<SignageDataModel?>(replay = 1)
     val signageDataState: SharedFlow<SignageDataModel?> = _signageDataState.asSharedFlow()
@@ -57,9 +65,18 @@ class HomeViewModel @Inject constructor(
 
     init {
         startHttpMessageCollection()
+        loadJson()
     }
 
+    private fun loadJson() = viewModelScope.launch{
+        val json = application.resources.openRawResource(R.raw.signage)
+            .bufferedReader()
+            .use { it.readText() }
 
+        val gson = Gson()
+        val parsed = gson.fromJson(json, GetSignageModel::class.java)
+        _signageDataState.emit(parsed.data)
+    }
 
     private suspend fun getSbTime() {
         while (true) {

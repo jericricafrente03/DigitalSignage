@@ -29,5 +29,5 @@ data class ZoneMediaModel(
     @SerializedName("channel_id") val channelId: Int?,
     @SerializedName("media_type_name") val mediaTypeName: String,
     @SerializedName("tv_channel") val tvChannel: TvChannelModel?,
-    @SerializedName("event_feeds") val eventFeedModel: List<EventFeedModel>?
+//    @SerializedName("event_feeds") val eventFeedModel: List<EventFeedModel>?
 )

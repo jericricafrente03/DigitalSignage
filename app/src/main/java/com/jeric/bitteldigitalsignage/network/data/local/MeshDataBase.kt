@@ -19,11 +19,12 @@ import com.jeric.bitteldigitalsignage.network.domain.model.weather.hourly.Hourly
         ZoneMediaModel::class,
         GetDailyData::class,
         HourlyWeatherData::class,
+
     ], version = 1 , exportSchema = false
 )
 @TypeConverters(
     LayoutModelConverter::class,
-    TVChannelConverter::class
+    TVChannelConverter::class,
 )
 abstract class MeshDataBase : RoomDatabase() {
     abstract fun homeUiDao(): HomeDao

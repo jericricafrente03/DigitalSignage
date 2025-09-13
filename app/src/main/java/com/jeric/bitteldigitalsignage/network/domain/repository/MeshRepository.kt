@@ -1,7 +1,5 @@
 package com.jeric.bitteldigitalsignage.network.domain.repository
 
-import com.jeric.bitteldigitalsignage.network.domain.model.GetSignageModel
-import com.jeric.bitteldigitalsignage.network.domain.model.MediaModel
 import com.jeric.bitteldigitalsignage.network.domain.model.SignageDataModel
 import com.jeric.bitteldigitalsignage.network.domain.model.ZoneMediaModel
 import com.jeric.bitteldigitalsignage.network.domain.model.ZoneModel

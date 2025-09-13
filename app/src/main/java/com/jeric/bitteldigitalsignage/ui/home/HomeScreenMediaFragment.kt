@@ -82,7 +82,7 @@ class HomeScreenMediaFragment : Fragment() {
                     MediaType.IMAGE -> displayImage(media.previewUrl)
                     MediaType.VIDEO -> displayVLC(media.previewUrl)
                     MediaType.WEATHER -> displayWeather(media.layoutId, media)
-                    MediaType.FEED -> displayFeeds(media, media.eventFeedModel)
+                    MediaType.FEED -> {}
                     MediaType.TV -> displayVLC(media.tvChannel?.channelUri,true)
                     MediaType.SCROLLING -> displayScroll(media.description)
                     MediaType.TIME -> displayTime(media.layoutId, media)

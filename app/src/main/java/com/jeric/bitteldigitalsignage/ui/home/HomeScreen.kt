@@ -2,6 +2,7 @@ package com.jeric.bitteldigitalsignage.ui.home
 
 import android.content.res.Resources
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -31,8 +32,8 @@ class HomeScreen : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        homeViewModel.getSignageDataModel()
-        homeViewModel.getDailyWeather()
+//        homeViewModel.getSignageDataModel()
+//        homeViewModel.getDailyWeather()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,8 +55,9 @@ class HomeScreen : AppCompatActivity() {
         layoutData ?: return
 
         with(binding) {
-            val imageUri = "${STB.HOST}:${STB.PORT}/${layoutData.imgUri}"
-            ivBg.load(imageUri)
+//            val imageUri = "${STB.HOST}:${STB.PORT}/${layoutData.imgUri}"
+            ivBg.load(layoutData.imgUri)
+            Log.v("meme","layout ${layoutData.imgUri}")
             val layoutId = LayoutManager.getLayoutManager().getLayout(layoutData.layoutId)
 
             if (layoutId == 0) {

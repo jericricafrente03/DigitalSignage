@@ -90,7 +90,7 @@ class MeshRepositoryImpl @Inject constructor(
         val response = api.getSignage()
         meshDataBase.withTransaction {
             dataBase.deleteAllSignage()
-            dataBase.insertSignage(response.data.toDomain())
+            response.data?.toDomain()?.let { dataBase.insertSignage(it) }
         }
         emit(dataBase.getAllSignage())
     }.flowOn(Dispatchers.IO)
@@ -99,7 +99,7 @@ class MeshRepositoryImpl @Inject constructor(
         val response = api.getSignage()
         meshDataBase.withTransaction {
             dataBase.deleteZones()
-            dataBase.insertZones(response.data.zones.toZoneListDomain())
+            response.data?.zones?.toZoneListDomain()?.let { dataBase.insertZones(it) }
         }
         emit(dataBase.getAllZones())
     }.flowOn(Dispatchers.IO)
@@ -126,7 +126,7 @@ class MeshRepositoryImpl @Inject constructor(
         val response = api.getSignage()
         meshDataBase.withTransaction {
             dataBase.deleteZonesMedia()
-            response.data.zones.forEach {
+            response.data?.zones?.forEach {
                 dataBase.insertZonesMedia(it.zoneMedia.toZoneMediaListDomain())
             }
         }
