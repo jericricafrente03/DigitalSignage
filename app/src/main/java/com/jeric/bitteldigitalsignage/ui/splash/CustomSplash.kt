@@ -44,8 +44,8 @@ class CustomSplash : AppCompatActivity() {
                             finish()
                         }
                         CustomSplashUiState.Splash -> {
-                            startActivity(Intent(this@CustomSplash, HomeScreen::class.java))
-//                            startActivity(Intent(this@CustomSplash, SignupScreen::class.java))
+//                            startActivity(Intent(this@CustomSplash, HomeScreen::class.java))
+                            startActivity(Intent(this@CustomSplash, SignupScreen::class.java))
                             finish()
                         }
                     }

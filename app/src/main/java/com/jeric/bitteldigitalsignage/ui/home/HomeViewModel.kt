@@ -11,6 +11,10 @@ import com.jeric.bitteldigitalsignage.R
 import com.jeric.bitteldigitalsignage.datastore.DataStoreOperations
 import com.jeric.bitteldigitalsignage.datastore.model.STB
 import com.jeric.bitteldigitalsignage.http.HTTPConnection
+import com.jeric.bitteldigitalsignage.network.data.mapper.toDomain
+import com.jeric.bitteldigitalsignage.network.data.mapper.toZoneListDomain
+import com.jeric.bitteldigitalsignage.network.data.mapper.toZoneMediaListDomain
+import com.jeric.bitteldigitalsignage.network.data.remote.dto.SignageResponseDto
 import com.jeric.bitteldigitalsignage.network.domain.model.GetSignageModel
 import com.jeric.bitteldigitalsignage.network.domain.model.MediaModel
 import com.jeric.bitteldigitalsignage.network.domain.model.SignageDataModel
@@ -64,7 +68,7 @@ class HomeViewModel @Inject constructor(
     val weatherUiStateToday: SharedFlow<GetDailyData> = _weatherUiStateToday.asSharedFlow()
 
     init {
-        startHttpMessageCollection()
+//        startHttpMessageCollection()
         loadJson()
     }
 
@@ -74,8 +78,12 @@ class HomeViewModel @Inject constructor(
             .use { it.readText() }
 
         val gson = Gson()
-        val parsed = gson.fromJson(json, GetSignageModel::class.java)
-        _signageDataState.emit(parsed.data)
+        val parsed = gson.fromJson(json, SignageResponseDto::class.java)
+        _signageDataState.emit(parsed.data?.toDomain())
+        parsed.data?.zones?.toZoneListDomain()?.let { _zoneState.emit(it) }
+        parsed.data?.zones?.forEach {
+            _zoneMediaFlow.emit(it.zoneMedia.toZoneMediaListDomain())
+        }
     }
 
     private suspend fun getSbTime() {

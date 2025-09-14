@@ -55,9 +55,8 @@ class HomeScreen : AppCompatActivity() {
         layoutData ?: return
 
         with(binding) {
-//            val imageUri = "${STB.HOST}:${STB.PORT}/${layoutData.imgUri}"
-            ivBg.load(layoutData.imgUri)
-            Log.v("meme","layout ${layoutData.imgUri}")
+            val imageUri = "${STB.HOST}:${STB.PORT}/${layoutData.imgUri}"
+            ivBg.load(imageUri)
             val layoutId = LayoutManager.getLayoutManager().getLayout(layoutData.layoutId)
 
             if (layoutId == 0) {
