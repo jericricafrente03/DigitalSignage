@@ -43,15 +43,14 @@ class HomeScreenMedia : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Call once, outside collectors
-//        homeViewModel.getZoneMediaModel()
-//        homeViewModel.getZoneModel()
+        homeViewModel.getZoneMediaModel()
+        homeViewModel.getZoneModel()
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 homeViewModel.zoneMediaFlow.collectLatest { zoneMedia->
                     launch {
                         homeViewModel.zoneState.collectLatest { zoneState ->
-                            Log.v("meme"," $zoneState $zoneMedia")
                             displayMedia(zoneState, zoneMedia)
                         }
                     }

@@ -1,5 +1,6 @@
 package com.jeric.bitteldigitalsignage.network.domain.repository
 
+import com.jeric.bitteldigitalsignage.network.domain.model.EventFeedModel
 import com.jeric.bitteldigitalsignage.network.domain.model.SignageDataModel
 import com.jeric.bitteldigitalsignage.network.domain.model.ZoneMediaModel
 import com.jeric.bitteldigitalsignage.network.domain.model.ZoneModel
@@ -22,6 +23,7 @@ interface MeshRepository {
     fun getSignageDataModel(): Flow<SignageDataModel>
     fun getZoneMediaModel(): Flow<List<ZoneMediaModel>>
     fun getZoneModel(): Flow<List<ZoneModel>>
+    fun getFeeds(): Flow<List<EventFeedModel>>
 
     fun getDailyWeather(): Flow<List<GetDailyData>>
     fun getHourlyWeather(): Flow<List<HourlyWeatherData>>

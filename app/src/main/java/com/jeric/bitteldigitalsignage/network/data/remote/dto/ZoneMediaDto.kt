@@ -1,6 +1,7 @@
 package com.jeric.bitteldigitalsignage.network.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
+import com.jeric.bitteldigitalsignage.network.domain.model.EventFeedModel
 
 data class ZoneMediaDto(
     @SerializedName("id") val id: Int,
@@ -21,7 +22,7 @@ data class ZoneMediaDto(
     @SerializedName("preview_thumbnail_url") val previewThumbnailUrl: String?,
     @SerializedName("layout_id") val layoutId: Int?,
     @SerializedName("channel_id") val channelId: Int?,
-    @SerializedName("event_feeds") val eventFeeds: List<Any>,
+    @SerializedName("event_feeds") val eventFeeds: List<EventFeedModel>,
     @SerializedName("tv_channel") val tvChannel: TvChannelDto?,
     @SerializedName("media_type_name") val mediaTypeName: String
 )

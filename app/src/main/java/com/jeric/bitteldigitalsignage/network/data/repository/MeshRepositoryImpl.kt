@@ -11,6 +11,7 @@ import com.jeric.bitteldigitalsignage.network.data.mapper.toZoneListDomain
 import com.jeric.bitteldigitalsignage.network.data.mapper.toZoneMediaListDomain
 import com.jeric.bitteldigitalsignage.network.data.mapper.toZoneModelDomain
 import com.jeric.bitteldigitalsignage.network.data.remote.IptvListAPI
+import com.jeric.bitteldigitalsignage.network.domain.model.EventFeedModel
 import com.jeric.bitteldigitalsignage.network.domain.model.MediaModel
 import com.jeric.bitteldigitalsignage.network.domain.model.SignageDataModel
 import com.jeric.bitteldigitalsignage.network.domain.model.ZoneMediaModel
@@ -103,6 +104,15 @@ class MeshRepositoryImpl @Inject constructor(
         }
         emit(dataBase.getAllZones())
     }.flowOn(Dispatchers.IO)
+
+    override fun getFeeds() = flow {
+        val response = api.getSignage()
+        response.data?.zones?.forEach { zones ->
+            zones.zoneMedia.forEach {
+                emit(it.eventFeeds)
+            }
+        }
+    }
 
     override fun getDailyWeather() = flow {
 //        val response = api.getWeatherDaily()

@@ -82,7 +82,7 @@ class HomeScreenMediaFragment : Fragment() {
                     MediaType.IMAGE -> displayImage(media.previewUrl)
                     MediaType.VIDEO -> displayVLC(media.previewUrl)
                     MediaType.WEATHER -> displayWeather(media.layoutId, media)
-                    MediaType.FEED -> {}
+                    MediaType.FEED -> displayFeeds(media)
                     MediaType.TV -> displayVLC(media.tvChannel?.channelUri,true)
                     MediaType.SCROLLING -> displayScroll(media.description)
                     MediaType.TIME -> displayTime(media.layoutId, media)
@@ -149,7 +149,8 @@ class HomeScreenMediaFragment : Fragment() {
         ) { _, _ -> }
     }
 
-    suspend fun displayFeeds(media: ZoneMediaModel,feeds: List<EventFeedModel>?) {
+    suspend fun displayFeeds(media: ZoneMediaModel) {
+        homeViewModel.getEventFeedModel()
         val layout57 = view?.findViewById<Layout57>(R.id.feed_scroll)
         val layout58 = view?.findViewById<Layout58>(R.id.feed_scroll58)
         val layout59 = view?.findViewById<Layout59>(R.id.feed_scroll59)
@@ -157,98 +158,101 @@ class HomeScreenMediaFragment : Fragment() {
         val layout24 = view?.findViewById<Layout24>(R.id.feed_scroll24)
         val layout42 = view?.findViewById<Layout42>(R.id.feed_scroll42)
 
-        if (feeds?.isNotEmpty() == true) {
+        homeViewModel.eventFeed.collectLatest { feeds ->
+            if (feeds.isNotEmpty()) {
+                var feeds = feeds
+                feeds = feeds.filter { feed ->
+                    feed.mediaId == media.mediaId
+                }
+                Log.v("meme","eventFeed -> $feeds")
+                when (media.layoutId.toString()) {
+                    "47" -> {
+                        layout57?.visibility = View.VISIBLE
+                        layout57?.setData(feeds)
+                    }
 
+                    "48" -> {
+                        layout58?.visibility = View.VISIBLE
+                        layout58?.layout58(feeds, media.name)
+                    }
 
-            var feeds = feeds
-            feeds = feeds.filter { feed ->
-                feed.mediaId == media.mediaId
+                    "49" -> {
+                        layout59?.visibility = View.VISIBLE
+                        layout59?.layout59(feeds, media.name)
+                    }
+
+                    "44" -> {
+                        layout42?.visibility = View.VISIBLE
+                        layout42?.layout42(feeds, media.name)
+                    }
+
+                    "38" -> {
+                        layout21?.visibility = View.VISIBLE
+                        layout21?.layout21(feeds, media.name)
+                        getListFeed(feeds)
+                    }
+
+                    "41" -> {
+                        layout24?.visibility = View.VISIBLE
+                        layout24?.setData(feeds, media.name)
+                    }
+
+                    "39" -> {
+                        feeds = feeds.filter { feed ->
+                            val format = SimpleDateFormat("yyyy-MM-dd kk:mm:ss", Locale.getDefault())
+                            val end = format.parse(feed.end)
+                            Date().before(end)
+                        }
+                        inflateLayout(binding.feedLayout, media.layoutId, MediaType.FEED, media)
+                        val typeface = ResourcesCompat.getFont(requireContext(), R.font.itc)
+                        val typeface2 = ResourcesCompat.getFont(requireContext(), R.font.itclight)
+                        val clock1 = view?.findViewById<TextView>(R.id.clock1)
+                        val clock2 = view?.findViewById<TextView>(R.id.clock2)
+                        val clock3 = view?.findViewById<TextView>(R.id.clock3)
+                        clock1?.typeface = typeface
+                        clock2?.typeface = typeface
+                        clock3?.typeface = typeface2
+                        val rvFeed = view?.findViewById<RecyclerView>(R.id.rv_feed)
+                        val rvFeed2 = view?.findViewById<RecyclerView>(R.id.rv_feed2)
+                        val feedAdapter = FeedAdapter(feeds, media.layoutId?.toInt() ?: 0)
+                        val feedAdapters = FeedAdapterTwice(feeds, media.layoutId?.toInt() ?: 0)
+                        rvFeed?.layoutManager = LinearLayoutManager(requireContext())
+                        rvFeed2?.layoutManager = LinearLayoutManager(requireContext())
+                        rvFeed?.adapter = feedAdapter
+                        rvFeed2?.adapter = feedAdapters
+                        feedAdapter.submitList(feeds.sortedWith(FeedTimeComparator()))
+                        feedAdapters.submitList(feeds.sortedWith(FeedTimeComparator()))
+                        getListFeedOrder(feeds.sortedWith(Reorder()))
+                    }
+
+                    else -> {
+                        feeds = feeds.filter { feed ->
+                            val format = SimpleDateFormat("yyyy-MM-dd kk:mm:ss", Locale.getDefault())
+                            val end = format.parse(feed.end)
+                            Date().before(end)
+                        }
+                        inflateLayout(binding.feedLayout, media.layoutId, MediaType.FEED, media)
+                        val typeface = ResourcesCompat.getFont(requireContext(), R.font.itc)
+                        val typeface2 = ResourcesCompat.getFont(requireContext(), R.font.itclight)
+                        val clock1 = view?.findViewById<TextView>(R.id.clock1)
+                        val clock2 = view?.findViewById<TextView>(R.id.clock2)
+                        val clock3 = view?.findViewById<TextView>(R.id.clock3)
+                        clock1?.typeface = typeface
+                        clock2?.typeface = typeface
+                        clock3?.typeface = typeface2
+                        val rvFeed = view?.findViewById<RecyclerView>(R.id.rv_feed)
+                        val feedAdapter = FeedAdapter(feeds, media.layoutId ?: 0)
+                        rvFeed?.layoutManager = LinearLayoutManager(requireContext())
+                        rvFeed?.adapter = feedAdapter
+                        feedAdapter.submitList(feeds.sortedWith(FeedTimeComparator()))
+                        getListFeedOrder(feeds.sortedWith(Reorder()))
+                    }
+                }
             }
 
-            when (media.id.toString()) {
-                "57" -> {
-                    layout57?.visibility = View.VISIBLE
-                    layout57?.setData(feeds)
-                }
 
-                "58" -> {
-                    layout58?.visibility = View.VISIBLE
-                    layout58?.layout58(feeds, media.name)
-                }
-
-                "59" -> {
-                    layout59?.visibility = View.VISIBLE
-                    layout59?.layout59(feeds, media.name)
-                }
-
-                "42" -> {
-                    layout42?.visibility = View.VISIBLE
-                    layout42?.layout42(feeds, media.name)
-                }
-
-                "21" -> {
-                    layout21?.visibility = View.VISIBLE
-                    layout21?.layout21(feeds, media.name)
-                    getListFeed(feeds)
-                }
-
-                "24" -> {
-                    layout24?.visibility = View.VISIBLE
-                    layout24?.setData(feeds, media.name)
-                }
-
-                "22" -> {
-                    feeds = feeds.filter { feed ->
-                        val format = SimpleDateFormat("yyyy-MM-dd kk:mm:ss", Locale.getDefault())
-                        val end = format.parse(feed.end)
-                        Date().before(end)
-                    }
-                    inflateLayout(binding.feedLayout, media.layoutId, MediaType.FEED, media)
-                    val typeface = ResourcesCompat.getFont(requireContext(), R.font.itc)
-                    val typeface2 = ResourcesCompat.getFont(requireContext(), R.font.itclight)
-                    val clock1 = view?.findViewById<TextView>(R.id.clock1)
-                    val clock2 = view?.findViewById<TextView>(R.id.clock2)
-                    val clock3 = view?.findViewById<TextView>(R.id.clock3)
-                    clock1?.typeface = typeface
-                    clock2?.typeface = typeface
-                    clock3?.typeface = typeface2
-                    val rvFeed = view?.findViewById<RecyclerView>(R.id.rv_feed)
-                    val rvFeed2 = view?.findViewById<RecyclerView>(R.id.rv_feed2)
-                    val feedAdapter = FeedAdapter(feeds, media.layoutId?.toInt() ?: 0)
-                    val feedAdapters = FeedAdapterTwice(feeds, media.layoutId?.toInt() ?: 0)
-                    rvFeed?.layoutManager = LinearLayoutManager(requireContext())
-                    rvFeed2?.layoutManager = LinearLayoutManager(requireContext())
-                    rvFeed?.adapter = feedAdapter
-                    rvFeed2?.adapter = feedAdapters
-                    feedAdapter.submitList(feeds.sortedWith(FeedTimeComparator()))
-                    feedAdapters.submitList(feeds.sortedWith(FeedTimeComparator()))
-                    getListFeedOrder(feeds.sortedWith(Reorder()))
-                }
-
-                else -> {
-                    feeds = feeds.filter { feed ->
-                        val format = SimpleDateFormat("yyyy-MM-dd kk:mm:ss", Locale.getDefault())
-                        val end = format.parse(feed.end)
-                        Date().before(end)
-                    }
-                    inflateLayout(binding.feedLayout, media.layoutId, MediaType.FEED, media)
-                    val typeface = ResourcesCompat.getFont(requireContext(), R.font.itc)
-                    val typeface2 = ResourcesCompat.getFont(requireContext(), R.font.itclight)
-                    val clock1 = view?.findViewById<TextView>(R.id.clock1)
-                    val clock2 = view?.findViewById<TextView>(R.id.clock2)
-                    val clock3 = view?.findViewById<TextView>(R.id.clock3)
-                    clock1?.typeface = typeface
-                    clock2?.typeface = typeface
-                    clock3?.typeface = typeface2
-                    val rvFeed = view?.findViewById<RecyclerView>(R.id.rv_feed)
-                    val feedAdapter = FeedAdapter(feeds, media.layoutId?.toInt() ?: 0)
-                    rvFeed?.layoutManager = LinearLayoutManager(requireContext())
-                    rvFeed?.adapter = feedAdapter
-                    feedAdapter.submitList(feeds.sortedWith(FeedTimeComparator()))
-                    getListFeedOrder(feeds.sortedWith(Reorder()))
-                }
-            }
         }
+
 
 
     }

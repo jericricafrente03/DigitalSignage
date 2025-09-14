@@ -123,7 +123,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
-        <com.jeric.bitteldigitalsignage.ui.runninglayout.Layout21
+        <com.jeric.bitteldigitalsignage.ui.runninglayout.Layout24
             android:id="@+id/feed_scroll24"
             android:layout_width="0dp"
             android:layout_height="0dp"

@@ -34,7 +34,7 @@ fun LayoutDto.toLayoutDomain(): LayoutModel {
 
 fun ZoneMediaDto.toZoneModelDomain(): ZoneMediaModel {
     return ZoneMediaModel(
-        id, mediaId, zoneId, signageId, zone, timeStart, timeEnd, deletedAt, createdAt, updatedAt, orientation, name, description, typeId, previewUrl, previewThumbnailUrl, layoutId, channelId, mediaTypeName,
+        id, mediaId, zoneId, signageId, zone, timeStart, timeEnd, deletedAt, createdAt, updatedAt, orientation, name?: "", description, typeId, previewUrl, previewThumbnailUrl, layoutId, channelId, mediaTypeName,
         tvChannel = this.tvChannel?.toTVDomain()
     )
 }

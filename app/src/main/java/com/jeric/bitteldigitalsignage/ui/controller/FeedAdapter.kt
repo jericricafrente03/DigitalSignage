@@ -33,14 +33,14 @@ class FeedAdapter(val media: List<EventFeedModel>, private val layoutId: Int): L
     override fun onBindViewHolder(holder: FeedViewHolder, position: Int) {
         val current = getItem(position)
         when(layoutId){
-            50 -> {
+            46 -> {
                 if(position == 0) {
                     holder.itemView.findViewById<View>(R.id.view1).setBackgroundColor("#01a453".toColorInt())
                 } else {
                     holder.itemView.findViewById<View>(R.id.view1).setBackgroundColor("#eb1920".toColorInt())
                 }
             }
-            41 -> {
+            43 -> {
                 if(position == 0) {
                     holder.itemView.findViewById<View>(R.id.view1).setBackgroundColor("#01a453".toColorInt())
                 } else {
@@ -82,7 +82,7 @@ class FeedAdapter(val media: List<EventFeedModel>, private val layoutId: Int): L
                         val schedEnd = Calendar.getInstance()
                         schedEnd.time = scheduleEndDate
                         when (layoutId) {
-                            14 -> {
+                            37 -> {
                                 var schedule: String =
                                     if (schedStart.get(Calendar.DAY_OF_YEAR) != todayDay)
                                         SimpleDateFormat("hh:mm a").format(scheduleStartDate)
@@ -96,22 +96,22 @@ class FeedAdapter(val media: List<EventFeedModel>, private val layoutId: Int): L
                                     "  $schedule -\n$end"
                                 tvSchedule?.text = schedule
                             }
-                            50 -> {
+                            46 -> {
                                 tvSchedule?.text = "$start - $end"
                             }
-                            22 ->  {
+                            39 ->  {
                                 tvSchedule?.text = "$start - $end"
                             }
-                            23 ->  {
+                            40 ->  {
                                 tvSchedule?.text = "$start - $end"
                             }
-                            25 ->  {
+                            42 ->  {
                                 tvSchedule?.text = "$start - $end"
                             }
-                            41 ->  {
+                            43 ->  {
                                 tvSchedule?.text = "$start - $end"
                             }
-                            44 ->  {
+                            45 ->  {
                                 tvSchedule?.text = "$start - $end"
                             }
                         }

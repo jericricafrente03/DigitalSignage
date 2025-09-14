@@ -15,6 +15,7 @@ import com.jeric.bitteldigitalsignage.network.data.mapper.toDomain
 import com.jeric.bitteldigitalsignage.network.data.mapper.toZoneListDomain
 import com.jeric.bitteldigitalsignage.network.data.mapper.toZoneMediaListDomain
 import com.jeric.bitteldigitalsignage.network.data.remote.dto.SignageResponseDto
+import com.jeric.bitteldigitalsignage.network.domain.model.EventFeedModel
 import com.jeric.bitteldigitalsignage.network.domain.model.GetSignageModel
 import com.jeric.bitteldigitalsignage.network.domain.model.MediaModel
 import com.jeric.bitteldigitalsignage.network.domain.model.SignageDataModel
@@ -61,6 +62,8 @@ class HomeViewModel @Inject constructor(
     private val _zoneMediaFlow = MutableSharedFlow<List<ZoneMediaModel>>(replay = 1)
     val zoneMediaFlow: SharedFlow<List<ZoneMediaModel>> = _zoneMediaFlow.asSharedFlow()
 
+    private val _eventFeed = MutableSharedFlow<List<EventFeedModel>>(replay = 1)
+    val eventFeed: SharedFlow<List<EventFeedModel>> = _eventFeed.asSharedFlow()
     private val _weatherUiState = MutableSharedFlow<List<GetDailyData>>(replay = 1)
     val weatherUiState: SharedFlow<List<GetDailyData>> = _weatherUiState.asSharedFlow()
 
@@ -68,8 +71,8 @@ class HomeViewModel @Inject constructor(
     val weatherUiStateToday: SharedFlow<GetDailyData> = _weatherUiStateToday.asSharedFlow()
 
     init {
-//        startHttpMessageCollection()
-        loadJson()
+        startHttpMessageCollection()
+//        loadJson()
     }
 
     private fun loadJson() = viewModelScope.launch{
@@ -129,6 +132,7 @@ class HomeViewModel @Inject constructor(
                 getSignageDataModel()
                 getZoneModel()
                 getZoneMediaModel()
+                getEventFeedModel()
             }
         )
         try {
@@ -173,6 +177,13 @@ class HomeViewModel @Inject constructor(
             _zoneMediaFlow.emit(it)
         }
     }
+
+    fun getEventFeedModel() = viewModelScope.launch {
+        meshRepository.getFeeds().collectLatest {
+            _eventFeed.emit(it)
+        }
+    }
+
 
 
 
