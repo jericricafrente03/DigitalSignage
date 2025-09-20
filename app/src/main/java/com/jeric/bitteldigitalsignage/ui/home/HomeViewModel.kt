@@ -183,13 +183,4 @@ class HomeViewModel @Inject constructor(
             _eventFeed.emit(it)
         }
     }
-
-
-
-
-
-
-
-
-
 }

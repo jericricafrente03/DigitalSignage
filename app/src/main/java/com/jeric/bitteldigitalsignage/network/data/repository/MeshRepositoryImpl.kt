@@ -109,10 +109,14 @@ class MeshRepositoryImpl @Inject constructor(
         val response = api.getSignage()
         response.data?.zones?.forEach { zones ->
             zones.zoneMedia.forEach {
-                emit(it.eventFeeds)
+                meshDataBase.withTransaction {
+                    dataBase.deleteEventFeeds()
+                    it.eventFeeds?.let { weather -> dataBase.insertEventFeeds(weather) }
+                }
+                emit(dataBase.getEventsFeeds())
             }
         }
-    }
+    }.flowOn(Dispatchers.IO)
 
     override fun getDailyWeather() = flow {
 //        val response = api.getWeatherDaily()

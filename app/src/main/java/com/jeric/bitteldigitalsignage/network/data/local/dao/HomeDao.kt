@@ -64,5 +64,14 @@ interface HomeDao {
     @Query("DELETE FROM hourly_weather")
     suspend fun deleteHourlyWeather()
 
+    @Query("SELECT * FROM eventfeedmodel")
+    fun getEventsFeeds(): List<EventFeedModel>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertEventFeeds(weather: List<EventFeedModel>)
+
+    @Query("DELETE FROM eventfeedmodel")
+    suspend fun deleteEventFeeds()
+
 
 }

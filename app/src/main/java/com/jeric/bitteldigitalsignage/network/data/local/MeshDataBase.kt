@@ -21,6 +21,7 @@ import com.jeric.bitteldigitalsignage.network.domain.model.weather.hourly.Hourly
         ZoneMediaModel::class,
         GetDailyData::class,
         HourlyWeatherData::class,
+        EventFeedModel::class
     ], version = 1 , exportSchema = false
 )
 @TypeConverters(

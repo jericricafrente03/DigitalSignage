@@ -22,7 +22,7 @@ data class ZoneMediaDto(
     @SerializedName("preview_thumbnail_url") val previewThumbnailUrl: String?,
     @SerializedName("layout_id") val layoutId: Int?,
     @SerializedName("channel_id") val channelId: Int?,
-    @SerializedName("event_feeds") val eventFeeds: List<EventFeedModel>,
+    @SerializedName("event_feeds") val eventFeeds: List<EventFeedModel>?,
     @SerializedName("tv_channel") val tvChannel: TvChannelDto?,
     @SerializedName("media_type_name") val mediaTypeName: String
 )
